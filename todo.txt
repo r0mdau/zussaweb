@@ -1,0 +1,13 @@
+Add cpu utilization to status screen
+make a nice icon
+try to make images cacheable
+change the submit speed form (make it work more obvious)
+clean up settings.php
+make it possible to change hella settings from within the web interface
+
+cpu utilization toevoegen aan status scherm
+leuk icoontje verzinnen
+images toch cacheable maken
+speed form aanpassen, huidige speed bovenaan zetten, streepje weghalen
+settings.php opruimen (upload)
+hella settings aanpassen vanuit web interface
