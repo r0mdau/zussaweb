@@ -2,7 +2,8 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-			<title>Zussaweb by r0mdau</title>
+		<title>Zussaweb</title>
+		<link rel="stylesheet" href="assets/css/bootstrap.min.css">
 	</head>
 	<body onLoad="setTimeout('refreshIt()',0)">
 		<?php
@@ -30,18 +31,29 @@
 			//get current status
 			$phpvars = GetInfo ($host, $port, $user, $passwd);
 		?>
-		<center>
-			<div class="container"> 
-				<div class="top">
-					Zussaweb &copy; <a href="https://github.com/r0mdau">r0mdau</a>
+		<div class="container container-fluid">
+			<div class="row-fluid">
+				<div class="span4">
+					<div class="top">
+						Zussaweb &copy; <a href="https://github.com/r0mdau">r0mdau</a>
+					</div>
+					<div class="menu">
+						<?=menu($phpvars)?>
+					</div>
 				</div>
-				<div class="menu">
-					<?=menu($phpvars)?>
+				</div> <!-- Mysterious div -->
+				<div class="span8">
+					<div class="contents">
+						<div class="block" id="status"></div>
+					</div>
 				</div>
 			</div>
-			<div class="contents">
-				<div class="block" id="status"></div>
-			</div>
-		</center>
+		</div>
+	<script>
+		function refreshIt() {
+			ajaxpage('status.php','status');
+			setTimeout('refreshIt()',15000); // refresh every 15 secs
+		}
+	</script>
 	</body>
 </html>
