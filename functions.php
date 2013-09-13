@@ -1,7 +1,9 @@
 <?php
 
 function freediskspace() {
-        return (round (disk_free_space(disk)/1024/1024,2));
+	$space = disk_free_space(__DIR__);
+	$space =(int)($space / 1000000000);
+	return $space.'G';
 }
 
 function sec2hms ($sec, $padHours = false) 
