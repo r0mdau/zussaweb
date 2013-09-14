@@ -41,7 +41,6 @@
 						<?=menu($phpvars)?>
 					</div>
 				</div>
-				</div> <!-- Mysterious div -->
 				<div class="span8">
 					<div class="contents">
 						<div class="block" id="status"></div>
