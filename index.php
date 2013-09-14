@@ -5,7 +5,7 @@
 		<title>Zussaweb</title>
 		<link rel="stylesheet" href="assets/css/bootstrap.min.css">
 	</head>
-	<body onLoad="setTimeout('refreshIt()',0)">
+	<body>
 		<?php
 			require_once "settings.php";
 			require_once "functions.php";
@@ -49,11 +49,16 @@
 				</div>
 			</div>
 		</div>
-	<script>
-		function refreshIt() {
-			ajaxpage('status.php','status');
-			setTimeout('refreshIt()',15000); // refresh every 15 secs
-		}
-	</script>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="assets/js/jquery-1.10.2.min.js"><\/script>')</script>
+		<script>			
+			function refreshIt() {
+				ajaxpage('status.php','status');
+				setTimeout('refreshIt()',1000);
+			}
+			$(document).ready(function(){
+				setTimeout('refreshIt()',0);
+			});
+		</script>
 	</body>
 </html>
