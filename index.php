@@ -4,6 +4,7 @@
 		<meta charset="utf-8">
 		<title>Zussaweb</title>
 		<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+		<link rel="stylesheet" href="styles/default/style.css">
 	</head>
 	<body>
 		<?php

@@ -1,7 +1,6 @@
 <?php
 require_once "settings.php";
 require_once "functions.php";
-require_once "styles.php";
 require_once('java.php');
 
 function currently_processing ($phpvars){
