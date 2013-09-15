@@ -11,7 +11,6 @@
 			require_once "settings.php";
 			require_once "functions.php";
 			require_once "frontend.php";
-			require_once "styles.php";
 			require_once('java.php');
 			
 			include("lib/xmlrpc.inc");
