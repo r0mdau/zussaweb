@@ -5,7 +5,7 @@ function popitup(url){
 }
 
 var loadedobjects = "";
-var rootdomain = "http://"+window.location.hostname;
+var rootdomain = "https://"+window.location.hostname;
 
 function ajaxpage(url, containerid){
 	$.ajax({

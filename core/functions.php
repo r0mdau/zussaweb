@@ -57,30 +57,26 @@ function SetQueue ($host, $port, $user, $passwd, $action, $id) {
 }
 
 function upload_file ($nzb_file) {
-
 	global $download_nzb_path;
-    $error = validate_upload($nzb_file);
-    if ($error) {
-        //print ($error);
-    } else { # cool, we can continue
-		# move just changes the INODE, copy may fail because hellanzb checks (and rejects) the file while copy in still in progress (Marius Karthaus, www.budgetdedicated.com)	
-		exec('mv '.escapeshellarg($nzb_file['tmp_name']).' '.escapeshellarg($download_nzb_path).'/'.escapeshellarg($nzb_file['name']), $res, $ret);
-		chmod($download_nzb_path . "/" . $nzb_file['name'], 0777);
-		if ($ret > 0){
-			$error = "Check the permissions for the upload directory";
-		} else {
-			$error = "<br><br><b><font color=\"#00FF00\">File upload OK </font></b><br>
-			Filename: " . $nzb_file['name'] ."<br>
-			Filesize: " . $nzb_file['size'] ." <br>";
-		}
-    }
-	return ($error);
+    $message = validate_upload($nzb_file);
+	# move just changes the INODE, copy may fail because hellanzb checks (and rejects) the file while copy in still in progress (Marius Karthaus, www.budgetdedicated.com)
+	//exec('mv '.escapeshellarg($nzb_file['tmp_name']).' '.escapeshellarg($download_nzb_path).'/'.escapeshellarg($nzb_file['name']), $res, $ret);
+	$ret = 0;
+	if(move_uploaded_file($nzb_file['tmp_name'], $download_nzb_path.'/'.$nzb_file['name']))
+		exec('chmod '.$download_nzb_path . "/" . $nzb_file['name'].' 0777', $out, $ret);
+	if ($ret != 0){
+		$message2 = "Check the permissions for the upload directory";
+	} else {
+		$message2 = "<strong>File upload OK</strong><br>
+		Filename: " . $nzb_file['name'];
+	}
+	return ($message.$message2);
 }
 
 
 function validate_upload($nzb_file) {
 	global $download_max_filesize, $download_allowed_types, $registered_types;
-	$start_error = "<br><br><b><font color=\"#00FF00\">Error:</font></b>\n";
+	$error = '';
 	if ($nzb_file['error'] <> 0) {
 		if ($nzb_file['error'] == 4)
 			$error = "\n<br>You did not upload anything!\n";
@@ -95,9 +91,5 @@ function validate_upload($nzb_file) {
 		if ($nzb_file['size'] > $download_max_filesize)
 			$error = "<p>The file <b>" .$nzb_file['name']. "</b> is bigger than " .$download_max_filesize. " bytes!</p>\n";
 	}
-	if (isset ($error)) {
-		if ($error)
-			$error = $start_error . $error . "\n</ul>";
-		return $error;
-	}
+	return $error;
 }

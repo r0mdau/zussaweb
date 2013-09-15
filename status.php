@@ -2,7 +2,7 @@
 require_once('settings.php');
 require_once('core/functions.php');
 require_once('core/frontend.php');
-include('lib/xmlrpc.inc');
+require_once('lib/xmlrpc.inc');
 
 global $host, $port, $user, $passwd, $action, $id;
 
@@ -22,14 +22,12 @@ if (isset($phpvars)) {
 	echo "uptime ".$phpvars['uptime']."<br>";
 	echo "total downloaded: ".$phpvars['total_dl_mb']."MB, ";
 	echo "total downloaded nzbs: ".$phpvars['total_dl_nzbs'].", ";
-	echo "free disk space: ".freediskspace($disk)."<br><br>";
+	echo "free disk space: ".freediskspace($disk)."<hr>";
 	currently_downloading($phpvars);
-	echo "<br><br>";
+	echo "<hr>";
 	queued ($phpvars);
-	echo "<br><br>";
+	echo "<hr>";
 	currently_processing($phpvars);
-	echo "<br><br>";
+	echo "<hr>";
 	logging ($phpvars);
-	echo "<br><br>";
-	footer ();
 }

@@ -2,7 +2,22 @@
 	require_once('settings.php');
 	require_once('core/frontend.php');
 	require_once('core/functions.php');
-	require_once("lib/xmlrpc.inc");
+	require_once('lib/xmlrpc.inc');
+	
+	global $host, $port, $user, $passwd, $action, $id;			
+	if (isset ($_GET['rate'])) {
+		//set max download option
+		SetQueue ($host, $port, $user, $passwd, "maxrate", $_GET['rate']); 
+	}
+	if (isset ($_FILES['nzbfile'])) {
+		$upload_status = upload_file($_FILES['nzbfile']);
+	}
+	if (isset ($_REQUEST['newzbinid'])) {
+		SetQueue ($host, $port, $user, $passwd, "enqueuenewzbin", trim($_REQUEST['newzbinid']));
+	}else
+		$upload_status="";			
+	//get current status
+	$phpvars = GetInfo ($host, $port, $user, $passwd);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,28 +25,13 @@
 		<meta charset="utf-8">
 		<title>Zussaweb</title>
 		<link rel="stylesheet" href="assets/css/bootstrap.min.css">
-		<link rel="stylesheet" href="styles/default/style.css">
-		<script src="assets/js/ajaxpage.js"></script>
+		<?php
+			// Mysterious refresh, remove it to see the problem after uploading a file
+			if(isset ($_FILES['nzbfile']))
+				echo '<meta http-equiv="refresh" content="0">';
+		?>
 	</head>
 	<body>
-		<?php			
-			global $host, $port, $user, $passwd, $action, $id;
-			
-			if (isset ($_REQUEST['rate'])) {
-				//set max download option
-				SetQueue ($host, $port, $user, $passwd, "maxrate", $_REQUEST['rate']); 
-			}
-			if (isset ($_FILES['nzbfile'])) {
-				$upload_status = upload_file($_FILES['nzbfile']);
-				echo '<meta http-equiv="refresh" content="10">';
-			}
-			if (isset ($_REQUEST['newzbinid'])) {
-				SetQueue ($host, $port, $user, $passwd, "enqueuenewzbin", trim($_REQUEST['newzbinid']));
-			}else
-				$upload_status="";			
-			//get current status
-			$phpvars = GetInfo ($host, $port, $user, $passwd);
-		?>
 		<div class="container container-fluid">
 			<div class="row-fluid">
 				<div class="span4">
@@ -42,22 +42,25 @@
 						<?=menu($phpvars)?>
 					</div>
 				</div>
-				<div class="span8">
+				<div class="span8 well">
 					<div class="contents">
-						<div class="block" id="status"></div>
+						<div id="status">
+							
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="assets/js/jquery-1.10.2.min.js"><\/script>')</script>
+		<script src="assets/js/ajaxpage.js"></script>
 		<script>			
 			function refreshIt() {
 				ajaxpage('status.php','status');
-				setTimeout('refreshIt()',1000);
+				setTimeout(refreshIt, 1000);
 			}
 			$(document).ready(function(){
-				setTimeout('refreshIt()',0);
+				refreshIt();
 			});
 		</script>
 	</body>
