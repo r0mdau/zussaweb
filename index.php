@@ -1,3 +1,9 @@
+<?php
+	require_once('settings.php');
+	require_once('core/frontend.php');
+	require_once('core/functions.php');
+	require_once("lib/xmlrpc.inc");
+?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -5,15 +11,10 @@
 		<title>Zussaweb</title>
 		<link rel="stylesheet" href="assets/css/bootstrap.min.css">
 		<link rel="stylesheet" href="styles/default/style.css">
+		<script src="assets/js/ajaxpage.js"></script>
 	</head>
 	<body>
-		<?php
-			require_once "settings.php";
-			require_once "functions.php";
-			require_once "frontend.php";
-			require_once('java.php');
-			
-			include("lib/xmlrpc.inc");
+		<?php			
 			global $host, $port, $user, $passwd, $action, $id;
 			
 			if (isset ($_REQUEST['rate'])) {

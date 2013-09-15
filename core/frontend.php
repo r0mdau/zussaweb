@@ -1,7 +1,4 @@
 <?php
-require_once "settings.php";
-require_once "functions.php";
-require_once('java.php');
 
 function currently_processing ($phpvars){
 	echo "<div class = \"block\">Currently processing";

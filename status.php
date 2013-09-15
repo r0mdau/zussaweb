@@ -1,8 +1,8 @@
 <?php
-require_once "settings.php";
-require_once "functions.php";
-require_once "frontend.php";
-include("lib/xmlrpc.inc");
+require_once('settings.php');
+require_once('core/functions.php');
+require_once('core/frontend.php');
+include('lib/xmlrpc.inc');
 
 global $host, $port, $user, $passwd, $action, $id;
 
