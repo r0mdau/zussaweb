@@ -63,27 +63,28 @@ function queued ($phpvars) {
 
 function logging ($phpvars) {
 	echo '<h4>Logging</h4><small>';
-	foreach ($phpvars['log_entries'] as $info) {
+	foreach ($phpvars['log_entries'] as $info)
 		echo $info['INFO']."<br>";
-	}
 	echo '</small><hr>';
 }
 
 function upload ($upload_status) {
-        global $download_max_filesize;
-        echo '<div class = "text-center well well-small">Upload NZB file<br>';
-        echo '<form enctype="multipart/form-data" action="index.php" method="post">';
-        echo '<input type="hidden" name="MAX_FILE_SIZE" value="' . $download_max_filesize . '" />';
-        echo 'Choose a file to upload: <input class="input" name="nzbfile" type="file" /><br><br>';
-        echo '<input class="submit" type="submit" value="Upload File" />';
-        echo '</form><div class="block" id="upload_status">';
-        echo '<p  class="text-center">upload status</p>';
-        echo $upload_status;
-        echo '</div></div>';
+	global $download_max_filesize;
+	echo '<div class = "text-center well well-small">';
+	echo '<h4>Upload NZB file</h4>';
+	echo '<form enctype="multipart/form-data" action="index.php" method="post">';
+	echo '<input type="hidden" name="MAX_FILE_SIZE" value="' . $download_max_filesize . '" />';
+	echo 'Choose a file to upload: <input class="input" name="nzbfile" type="file" /><br><br>';
+	echo '<input class="submit" type="submit" value="Upload File" />';
+	echo '</form><div class="block" id="upload_status">';
+	echo '<p  class="text-center">upload status</p>';
+	echo $upload_status;
+	echo '</div></div>';
 }
 
 function maxrate ($phpvars) {
-    echo "<div class=\"text-center well\">Max download rate<br><br>";
+    echo '<div class="text-center well">';
+	echo '<h4>Max download rate</h4>';
 	if ($phpvars['maxrate']=="0")
 		echo "current rate: unlimited";
 	else
@@ -103,7 +104,8 @@ function maxrate ($phpvars) {
 }
 
 function inputnewzbinid() {
-	echo '<div class="text-center well">Upload NewzbinID<br><br>';
+	echo '<div class="text-center well">';
+	echo '<h4>Upload NewzbinID</h4>';
 	echo '<form>ID:';
 	echo '	<input class="input" type="text" name="newzbinid" />';
 	echo '  <br><br>';

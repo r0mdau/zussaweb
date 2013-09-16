@@ -4,19 +4,15 @@
 	require_once('core/functions.php');
 	require_once('lib/xmlrpc.inc');
 	
-	global $host, $port, $user, $passwd, $action, $id;			
-	if (isset ($_GET['rate'])) {
-		//set max download option
-		SetQueue ($host, $port, $user, $passwd, "maxrate", $_GET['rate']); 
-	}
-	if (isset ($_FILES['nzbfile'])) {
+	global $host, $port, $user, $passwd, $action, $id;
+	$upload_status = '';
+	if (isset ($_GET['rate']))
+		SetQueue ($host, $port, $user, $passwd, "maxrate", $_GET['rate']);
+	else if (isset ($_FILES['nzbfile']))
 		$upload_status = upload_file($_FILES['nzbfile']);
-	}
-	if (isset ($_REQUEST['newzbinid'])) {
+	else if (isset ($_REQUEST['newzbinid']))
 		SetQueue ($host, $port, $user, $passwd, "enqueuenewzbin", trim($_REQUEST['newzbinid']));
-	}else
-		$upload_status="";			
-	//get current status
+	
 	$phpvars = GetInfo ($host, $port, $user, $passwd);
 ?>
 <!DOCTYPE html>
