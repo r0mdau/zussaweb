@@ -6,10 +6,10 @@ require_once('lib/xmlrpc.inc');
 
 global $host, $port, $user, $passwd, $action, $id;
 
-if (isset ($_REQUEST['action'])) {
-	$action = $_REQUEST['action'];
-	if (isset ($_REQUEST['id']))
-		$id = $_REQUEST['id'];
+if (isset ($_GET['action'])) {
+	$action = $_GET['action'];
+	if (isset ($_GET['id']))
+		$id = $_GET['id'];
 	$set = SetQueue ($host, $port, $user, $passwd, $action ,$id);
     $phpvars = GetInfo ($host, $port, $user, $passwd);
 }
