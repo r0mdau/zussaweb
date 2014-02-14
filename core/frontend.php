@@ -29,7 +29,7 @@ function currently_downloading ($phpvars) {
 			
 			echo '<td>'.sec2hms($phpvars['eta']);
 			echo '<tr><td><td><td colspan="3" class="progress">';
-			echo 	'<div class="progress progress-striped'.($phpvars['is_paused'] ? '' : ' active').'">
+			echo 	'<div class="progress">
 						<div class="bar" style="width: '.$phpvars['percent_complete'].'%;"></div>
 					</div>';
         	echo '<td>'.$phpvars['percent_complete'].'%';
