@@ -66,6 +66,7 @@
 			function refreshIt() {
 				ajaxpage('status.php','status');
 				setTimeout(refreshIt, 1000);
+				$('.dz-preview').hide();
 			}
 			$(document).ready(function(){
 				refreshIt();
