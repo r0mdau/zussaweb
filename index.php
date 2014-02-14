@@ -4,6 +4,7 @@
 	require_once('core/functions.php');
 	require_once('lib/xmlrpc.inc');
 	
+	/*
 	global $host, $port, $user, $passwd, $action, $id;
 	$upload_status = '';
 	if (isset ($_GET['rate']))
@@ -14,6 +15,7 @@
 		SetQueue ($host, $port, $user, $passwd, "enqueuenewzbin", trim($_REQUEST['newzbinid']));
 	
 	$phpvars = GetInfo ($host, $port, $user, $passwd);
+	*/
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,6 +23,15 @@
 		<meta charset="utf-8">
 		<title>Zussaweb</title>
 		<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+		<style>
+			.dropzone{
+				width: 100%;
+				height: 50px;
+				border: 3px dashed #BBBBBB;
+				line-height:50px;
+				text-align: center;
+			}
+		</style>
 		<?php
 			// Mysterious refresh, remove it to see the problem after uploading a file
 			if(isset ($_FILES['nzbfile']))
@@ -50,6 +61,7 @@
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="assets/js/jquery-1.10.2.min.js"><\/script>')</script>
 		<script src="assets/js/ajaxpage.js"></script>
+		<script src="assets/js/dropzone.js"></script>
 		<script>			
 			function refreshIt() {
 				ajaxpage('status.php','status');

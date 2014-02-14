@@ -68,6 +68,14 @@ function logging ($phpvars) {
 	echo '</small><hr>';
 }
 
+function draganddrop(){
+	echo '<form action="file-upload.php" class="dropzone">
+			<div class="fallback">
+			  <input name="file" type="file" multiple />
+			</div>
+		  </form>';
+}
+
 function upload ($upload_status) {
 	global $download_max_filesize;
 	echo '<div class = "text-center well well-small">';
@@ -116,6 +124,8 @@ function inputnewzbinid() {
 function menu ($phpvars) {
  	global $upload_status;
 	$html = '<div class = "block">';
+	$html .= draganddrop();
+	$html .= '<br /><br />';
 	$html .= upload($upload_status);
 	$html .= '<br /><br />';
 	$html .= maxrate($phpvars);
