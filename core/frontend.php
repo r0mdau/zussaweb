@@ -80,9 +80,8 @@ function upload ($upload_status) {
 	global $download_max_filesize;
 	echo '<div class = "text-center well well-small">';
 	echo '<h4>Upload NZB file</h4>';
-	echo '<form enctype="multipart/form-data" action="index.php" method="post">';
-	echo '<input type="hidden" name="MAX_FILE_SIZE" value="' . $download_max_filesize . '" />';
-	echo 'Choose a file to upload: <input class="input" name="nzbfile" type="file" /><br><br>';
+	echo '<form enctype="multipart/form-data" action="file-upload.php" method="post">';
+	echo 'Choose a file to upload: <input class="input" name="file" type="file" /><br><br>';
 	echo '<input class="submit" type="submit" value="Upload File" />';
 	echo '</form><div class="block" id="upload_status">';
 	echo '<p  class="text-center">upload status</p>';
